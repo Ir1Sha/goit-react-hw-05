@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
 import MovieList from "../components/MovieList/MovieList";
+import { useSearchParams } from "react-router-dom";
+import { API_KEY } from "../../config";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -14,19 +15,31 @@ const MoviesPage = () => {
     axios
       .get(`https://api.themoviedb.org/3/search/movie?query=${query}`, {
         headers: {
-          Authorization: `Bearer eced978ba9a6a00d9c703652fcf78a3f`,
+          Authorization: `Bearer ${API_KEY}`,
         },
       })
       .then((response) => {
         setMovies(response.data.results);
       })
-      .catch((error) => console.error("Error searching movies:", error));
+      .catch((error) => {
+        console.error("Error searching movies:", error);
+      });
   }, [query]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const searchValue = e.target.elements.query.value;
+    const searchValue = e.target.elements.query.value.trim();
+
+    if (!searchValue) {
+      alert("Please enter a search term!");
+      return;
+    }
+
     setSearchParams({ query: searchValue });
+  };
+
+  const handleMovieClick = (movieId) => {
+    console.log(`Movie clicked with ID: ${movieId}`);
   };
 
   return (
@@ -41,7 +54,7 @@ const MoviesPage = () => {
         <button type="submit">Search</button>
       </form>
       {movies.length > 0 ? (
-        <MovieList movies={movies} />
+        <MovieList movies={movies} onMovieClick={handleMovieClick} />
       ) : (
         <p>No movies found</p>
       )}

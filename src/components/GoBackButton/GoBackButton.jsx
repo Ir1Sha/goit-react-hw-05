@@ -1,16 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const GoBackButton = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const backLink = useRef(location.state?.from ?? "/movies");
 
-  const handleGoBack = () => {
-    navigate(backLink.current);
-  };
-
-  return <button onClick={handleGoBack}>Go Back</button>;
+  return <button onClick={() => navigate(-1)}>Go Back</button>;
 };
 
 export default GoBackButton;
