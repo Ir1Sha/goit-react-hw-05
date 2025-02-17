@@ -1,0 +1,21 @@
+.homePageContainer {
+  text-align: center;
+}
+
+.homePageTitle {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #fff;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+
+.paragraph {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #fff;
+  margin-top: 36px;
+}

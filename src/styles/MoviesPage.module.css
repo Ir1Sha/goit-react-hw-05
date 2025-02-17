@@ -1,0 +1,73 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 20px;
+  width: 1440px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+}
+
+.searchBtn {
+  background-color: #00b3b3;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 150px;
+  max-width: 150px;
+}
+
+.searchBtn:hover {
+  background-color: #008080;
+}
+
+.searchResponse {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.movieList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .searchContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto;
+  }
+}

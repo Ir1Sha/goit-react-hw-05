@@ -3,6 +3,7 @@ import axios from "axios";
 import MovieList from "../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 import { API_KEY } from "../../config";
+import styles from "../styles/MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -43,20 +44,25 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.searchContainer}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="query"
           defaultValue={query}
           placeholder="Search for a movie"
+          className={styles.input}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={styles.searchBtn}>
+          Search
+        </button>
       </form>
-      {movies.length > 0 ? (
+      {query && movies.length === 0 && (
+        <p className={styles.searchResponse}>No movies found</p>
+      )}
+
+      {movies.length > 0 && (
         <MovieList movies={movies} onMovieClick={handleMovieClick} />
-      ) : (
-        <p>No movies found</p>
       )}
     </div>
   );

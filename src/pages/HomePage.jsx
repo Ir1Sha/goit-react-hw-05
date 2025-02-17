@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MovieList from "../components/MovieList/MovieList";
 import { API_KEY } from "../../config";
+import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -34,12 +35,12 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <h1>Trending Movies</h1>
+    <div className={styles.homePageContainer}>
+      <h1 className={styles.homePageTitle}>Trending Movies</h1>
       {movies.length > 0 ? (
         <MovieList movies={movies} onMovieClick={handleMovieClick} />
       ) : (
-        <p>No movies found</p>
+        <p className={styles.paragraph}>No movies found</p>
       )}
     </div>
   );

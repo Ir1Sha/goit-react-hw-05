@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import { API_KEY } from "../../config";
+import styles from "../styles/MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -58,32 +59,48 @@ const MovieDetailsPage = () => {
       });
   }, [movieId]);
 
+  const handleToggleCast = () => {
+    setShowCast((prev) => !prev);
+    setShowReviews(false);
+  };
+
+  const handleToggleReviews = () => {
+    setShowReviews((prev) => !prev);
+    setShowCast(false);
+  };
+
   if (!movieData) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className={styles.movieDetailsContainer}>
       <GoBackButton onClick={() => navigate(-1)} />
 
       <img
         src={`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`}
         alt={movieData.title}
         width={250}
+        className={styles.moviePoster}
       />
-      <h1>{movieData.title}</h1>
-      <p>User Score: {movieData.vote_average}</p>
-      <p>{movieData.overview}</p>
-      <p>Genres: {movieData.genres.map((genre) => genre.name).join(", ")}</p>
+      <h1 className={styles.movieTitle}>{movieData.title}</h1>
+      <p className={styles.movieInfo}>User Score: {movieData.vote_average}</p>
+      <p className={styles.movieInfo}>{movieData.overview}</p>
+      <p className={styles.movieInfo}>
+        Genres: {movieData.genres.map((genre) => genre.name).join(", ")}
+      </p>
 
-      <div>
+      <div className={styles.additionalInfo}>
         <h2>Additional Information</h2>
-        <ul>
+        <ul className={styles.toggleButtonsContainer}>
           <li>
-            <button onClick={() => setShowCast(!showCast)}>
+            <button onClick={handleToggleCast} className={styles.toggleButton}>
               {showCast ? "Hide Cast" : "Cast"}
             </button>
           </li>
           <li>
-            <button onClick={() => setShowReviews(!showReviews)}>
+            <button
+              onClick={handleToggleReviews}
+              className={styles.toggleButton}
+            >
               {showReviews ? "Hide Reviews" : "Reviews"}
             </button>
           </li>
@@ -91,16 +108,16 @@ const MovieDetailsPage = () => {
 
         {showCast && (
           <div>
-            <h2>Cast</h2>
-            <ul>
+            <h2 className={styles.additionalHeader}>Cast</h2>
+            <ul className={styles.castList}>
               {cast.map((actor) => (
-                <li key={actor.id}>
-                  <p>{actor.name}</p>
+                <li key={actor.id} className={styles.castItem}>
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
                     alt={actor.name}
                     width={100}
                   />
+                  <p className={styles.actorName}>{actor.name}</p>
                 </li>
               ))}
             </ul>
@@ -109,11 +126,11 @@ const MovieDetailsPage = () => {
 
         {showReviews ? (
           reviews.length > 0 ? (
-            <div>
-              <h3>Reviews</h3>
+            <div className={styles.reviewsContainer}>
+              <h3 className={styles.additionalHeader}>Reviews</h3>
               <ul>
                 {reviews.map((review) => (
-                  <li key={review.id}>
+                  <li key={review.id} className={styles.reviewItem}>
                     <p>
                       <strong>{review.author}</strong>
                     </p>
@@ -123,7 +140,9 @@ const MovieDetailsPage = () => {
               </ul>
             </div>
           ) : (
-            <p>We don't have any reviews for this movie.</p>
+            <p className={styles.movieInfo}>
+              We don't have any reviews for this movie.
+            </p>
           )
         ) : null}
       </div>
