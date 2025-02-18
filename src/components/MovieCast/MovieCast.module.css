@@ -1,0 +1,45 @@
+.additionalHeader {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+  color: #aaa;
+}
+
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  max-width: 900px;
+}
+
+.castItem {
+  text-align: center;
+  width: 150px;
+  max-width: 150px;
+  flex: 1 1 calc(20% - 20px);
+}
+
+.castItem img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.actorName {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.characterName {
+  font-size: 13px;
+  color: #aaa;
+}

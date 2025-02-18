@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_KEY } from "../../../config";
+import styles from "./MovieCast.module.css";
 
-const MovieCast = ({ movieId }) => {
+const MovieCast = () => {
+  const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
@@ -21,22 +24,26 @@ const MovieCast = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Cast</h2>
-      <ul>
+    <>
+      <h2 className={styles.additionalHeader}>Cast</h2>
+      <ul className={styles.castList}>
         {cast.map((actor) => (
-          <li key={actor.cast_id}>
+          <li key={actor.id} className={styles.castItem}>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                  : "https://via.placeholder.com/100"
+              }
               alt={actor.name}
-              width={100}
+              className={styles.castItemImg}
             />
-            <p>{actor.name}</p>
-            <p>{actor.character}</p>
+            <p className={styles.actorName}>{actor.name}</p>
+            <p className={styles.characterName}>{actor.character}</p>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

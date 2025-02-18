@@ -46,77 +46,18 @@
   gap: 15px;
   list-style: none;
   padding: 0;
-  margin-top: 15px;
-}
-
-.toggleButton {
-  background-color: #008080;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  width: 150px;
-  max-width: 150px;
-}
-
-.toggleButton:hover {
-  background-color: #005f5f;
-}
-
-.additionalHeader {
-  display: block;
   margin-top: 30px;
-  margin-bottom: 36px;
-  font-size: 22px;
-  font-weight: 500;
-  line-height: normal;
 }
 
-.castList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.castItem {
-  text-align: center;
-  width: 120px;
-}
-
-.castItem img {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-top: 20px;
-}
-
-.actorName {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.reviewsContainer {
-  margin-top: 20px;
-  text-align: left;
-  width: 100%;
-}
-
-.reviewItem {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.reviewItem strong {
+a {
   color: #00b3b3;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:active {
+  color: #008080 !important;
 }
